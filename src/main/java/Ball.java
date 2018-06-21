@@ -1,12 +1,13 @@
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import javafx.fxml.FXMLLoader;
 
 public class Ball {
     
     private int xPos, yPos;
     private ImageIcon image;
-    private String path = "ball.png";
+    private String path = "images/ball.png";
     private int right = 1;
     private int down = 1;
 
@@ -15,7 +16,7 @@ public class Ball {
         this.yPos = yPos;
         this.right = right;
         this.down = down;
-        this.image = new ImageIcon(getClass().getResource(this.path));
+        image = new ImageIcon(getClass().getResource(path));
     }
 
     public int getXPos() {

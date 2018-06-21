@@ -6,14 +6,14 @@ public class Wall {
     
     private int xPos, yPos;
     private ImageIcon image;
-    private String path = "wall.png";
+    private String path = "images/wall.png";
     private int player;
 
     public Wall(int xPos, int yPos, int player) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.player = player;
-        this.image = new ImageIcon(getClass().getResource(this.path));
+        this.image = new ImageIcon(getClass().getResource(path));
     }
 
     public int getXPos() {
