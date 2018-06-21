@@ -33,7 +33,7 @@ public class Main {
 
         cards = new JPanel(new CardLayout());
         mainScreen = new GameScreen();
-        cards.add(mainScreen, "mainScreen");
+        cards.add(mainScreen);
         frame.add(cards);
         frame.pack();
         frame.setVisible(true);

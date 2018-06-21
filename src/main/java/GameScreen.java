@@ -10,6 +10,7 @@ import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 import java.awt.Graphics;
+import javax.swing.ImageIcon;
 import java.util.HashSet;
 import java.awt.Color;
 import javax.swing.Box;
@@ -19,10 +20,20 @@ import java.util.ArrayList;
 public class GameScreen extends JPanel implements KeyListener {
 
     public static Timer timer;
+    public static Timer timer2;
     Ball ball;
     Wall player1;
     Wall player2;
     JLabel one, two, three;
+    Counter c1, c2, c3;
+    public static java.util.Timer t1;
+    public static java.util.Timer t2;
+    public static java.util.Timer t3;
+    public static java.util.Timer t4;
+    public static java.util.Timer t5;
+    public static boolean countdown1 = false;
+    public static boolean countdown2 = false;
+    public static boolean countdown3 = true;
     public static boolean boolean1 = false;
     public static boolean boolean2 = false;
     public static boolean boolean3 = false;
@@ -37,19 +48,37 @@ public class GameScreen extends JPanel implements KeyListener {
         ball = new Ball(338, 338, 1, 1);
         player1 = new Wall(0, 275, 1);
         player2 = new Wall(675, 275, 2);
+        add(Box.createVerticalStrut(225));
+        three = new JLabel("3");
+        three.setFont(new Font("Verdana", Font.BOLD, 60));
+        three.setForeground(Color.BLACK);
+        three.setAlignmentX(Component.CENTER_ALIGNMENT);
+        two = new JLabel("2");
+        two.setFont(new Font("Verdana", Font.BOLD, 60));
+        two.setForeground(Color.BLACK);
+        two.setAlignmentX(Component.CENTER_ALIGNMENT);
+        one = new JLabel("1");
+        one.setFont(new Font("Verdana", Font.BOLD, 60));
+        one.setForeground(Color.BLACK);
+        one.setAlignmentX(Component.CENTER_ALIGNMENT);
+        c1 = new Counter(346, 250, "images/1.png");
+        c2 = new Counter(346, 250, "images/2.png");
+        c3 = new Counter(346, 250, "images/3.png");
     }
 
     public void startTimer() {
-        new java.util.Timer().schedule( 
+        t1 = new java.util.Timer();
+        t1.schedule(
             new java.util.TimerTask() {
                 @Override
                 public void run() {
                     boolean1 = true;
                 }
-            }, 
+            },
             5900
         );
-        new java.util.Timer().schedule( 
+        t2 = new java.util.Timer();
+        t2.schedule( 
             new java.util.TimerTask() {
                 @Override
                 public void run() {
@@ -58,7 +87,8 @@ public class GameScreen extends JPanel implements KeyListener {
             }, 
             18800
         );
-        new java.util.Timer().schedule( 
+        t3 = new java.util.Timer();
+        t3.schedule( 
             new java.util.TimerTask() {
                 @Override
                 public void run() {
@@ -67,7 +97,8 @@ public class GameScreen extends JPanel implements KeyListener {
             }, 
             38720
         );
-        new java.util.Timer().schedule( 
+        t4 = new java.util.Timer();
+        t4.schedule( 
             new java.util.TimerTask() {
                 @Override
                 public void run() {
@@ -76,7 +107,8 @@ public class GameScreen extends JPanel implements KeyListener {
             }, 
             63000
         );
-        new java.util.Timer().schedule( 
+        t5 = new java.util.Timer();
+        t5.schedule( 
             new java.util.TimerTask() {
                 @Override
                 public void run() {
@@ -94,54 +126,58 @@ public class GameScreen extends JPanel implements KeyListener {
         ball.draw(g);
         player1.draw(g);
         player2.draw(g);
+        if (countdown3) c3.draw(g);
+        if (countdown2) c2.draw(g);
+        if (countdown1) c1.draw(g);
     }
 
     public void setUp() {
-        three = new JLabel("3");
-        three.setFont(new Font("Verdana", Font.BOLD, 60));
-        three.setForeground(Color.BLACK);
-        three.setAlignmentX(Component.CENTER_ALIGNMENT);
-        two = new JLabel("2");
-        two.setFont(new Font("Verdana", Font.BOLD, 60));
-        two.setForeground(Color.BLACK);
-        two.setAlignmentX(Component.CENTER_ALIGNMENT);
-        one = new JLabel("1");
-        one.setFont(new Font("Verdana", Font.BOLD, 60));
-        one.setForeground(Color.BLACK);
-        one.setAlignmentX(Component.CENTER_ALIGNMENT);
-        add(Box.createVerticalStrut(225));
-        add(three);
-        Main.frame.validate();
-        Main.frame.repaint();
-        try {
-            Thread.sleep(1000);
-        } catch (Exception e) {
-            e.getMessage();
-        }
-        remove(three);
-        Main.frame.validate();
-        Main.frame.repaint();
-        add(two);
-        Main.frame.validate();
-        Main.frame.repaint();
-        try {
-            Thread.sleep(1000);
-        } catch (Exception e) {
-            e.getMessage();
-        }
-        remove(two);
-        Main.frame.validate();
-        Main.frame.repaint();
-        add(one);
-        Main.frame.validate();
-        Main.frame.repaint();
-        try {
-            Thread.sleep(1000);
-        } catch (Exception e) {
-            e.getMessage();
-        }
-        remove(one);
-        startTimer();
+        new java.util.Timer().schedule( 
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    countdown3 = false;
+                    countdown2 = true;
+                    repaint();
+                }
+            }, 
+            1050
+        );
+        new java.util.Timer().schedule( 
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    countdown2 = false;
+                    countdown1 = true;
+                    repaint();
+                }
+            }, 
+            2100
+        );
+        new java.util.Timer().schedule( 
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    countdown1 = false;
+                    startTimer();
+                    repaint();
+                }
+            }, 
+            3150
+        );
+        repaint();
+    }
+
+    public void restart() {
+        ball.setXPos(338);
+        ball.setYPos(338);
+        ball.setSpeed(2);
+        ball.setDown(1);
+        ball.setRight(1);
+        player1.setYPos(275);
+        player2.setYPos(275);
+        countdown3 = true;
+        setUp();
     }
 
     private class TimerListener implements ActionListener {
@@ -192,6 +228,31 @@ public class GameScreen extends JPanel implements KeyListener {
                     ball.setSpeed(ball.getSpeed()+1);
                     boolean5 = false;
                 }
+            }
+            if (ball.getXPos() < -155 || ball.getXPos() > 800) {
+                
+            }
+            if (ball.getXPos() < -155 || ball.getXPos() > 800) {
+                timer.stop();
+                t1.cancel();
+                t2.cancel();
+                t3.cancel();
+                t4.cancel();
+                t5.cancel();
+                boolean1 = false;
+                boolean2 = false;
+                boolean3 = false;
+                boolean4 = false;
+                boolean5 = false;
+                new java.util.Timer().schedule( 
+                    new java.util.TimerTask() {
+                        @Override
+                        public void run() {
+                            restart();
+                        }
+                    }, 
+                    350
+                );
             }
             /*At the end of each frame update, repaint the level to the panel*/
             repaint();
