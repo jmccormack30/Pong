@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class GameScreen extends JPanel implements KeyListener {
 
-    Timer timer;
+    public static Timer timer;
     Ball ball;
     Wall player1;
     Wall player2;
@@ -35,6 +35,49 @@ public class GameScreen extends JPanel implements KeyListener {
     }
 
     public void startTimer() {
+        new java.util.Timer().schedule( 
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    System.out.println("Ball Speed up x1");
+                    ball.setSpeed(ball.getSpeed()+1);
+                }
+            }, 
+            6520 
+        );
+        new java.util.Timer().schedule( 
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    System.out.println();
+                    System.out.println("Ball Speed up x2");
+                    ball.setSpeed(ball.getSpeed()+1);
+                }
+            }, 
+            15000 
+        );
+        new java.util.Timer().schedule( 
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    System.out.println();
+                    System.out.println("Ball Speed up x3");
+                    ball.setSpeed(ball.getSpeed()+1);
+                }
+            }, 
+            19500 
+        );
+        new java.util.Timer().schedule( 
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    System.out.println();
+                    System.out.println("Ball Speed up x4");
+                    ball.setSpeed(ball.getSpeed()+1);
+                }
+            }, 
+            26000
+        );
         timer = new Timer(14, new TimerListener());
         timer.start();
     }

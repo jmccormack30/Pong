@@ -10,6 +10,7 @@ public class Ball {
     private String path = "images/ball.png";
     private int right = 1;
     private int down = 1;
+    private int speed = 2;
 
     public Ball(int xPos, int yPos, int right, int down) {
         this.xPos = xPos;
@@ -21,6 +22,14 @@ public class Ball {
 
     public int getXPos() {
         return xPos;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public int getSpeed() {
+        return speed;
     }
 
     public int getYPos() {
@@ -59,16 +68,16 @@ public class Ball {
             down = 1;
         }
         if (right == 1) {
-            xPos += 4;
+            xPos += speed;
         } else if (right == 0) {
-            xPos -= 4;
+            xPos -= speed;
         } else {
             xPos = xPos;
         }
         if (down == 1) {
-            yPos += 4;
+            yPos += speed;
         } else if (down == 0) {
-            yPos -= 4;
+            yPos -= speed;
         } else {
             xPos = xPos;
         }
