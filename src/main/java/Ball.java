@@ -7,7 +7,7 @@ public class Ball {
     
     private int xPos, yPos;
     private ImageIcon image;
-    private String path = "images/ball.png";
+    private String path = "images/b_maroon.png";
     private int right = 1;
     private int down = 1;
     private int speed = 3;

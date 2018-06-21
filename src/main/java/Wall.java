@@ -6,7 +6,7 @@ public class Wall {
     
     private int xPos, yPos;
     private ImageIcon image;
-    private String path = "images/wall.png";
+    private String path = "images/w_bluegray.png";
     private int player;
 
     public Wall(int xPos, int yPos, int player) {
