@@ -10,7 +10,7 @@ public class Ball {
     private String path = "images/ball.png";
     private int right = 1;
     private int down = 1;
-    private int speed = 2;
+    private int speed = 3;
 
     public Ball(int xPos, int yPos, int right, int down) {
         this.xPos = xPos;

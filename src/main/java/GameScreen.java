@@ -31,6 +31,13 @@ public class GameScreen extends JPanel implements KeyListener {
     public static java.util.Timer t3;
     public static java.util.Timer t4;
     public static java.util.Timer t5;
+    public static java.util.Timer t6;
+    public static java.util.Timer t7;
+    public static java.util.Timer t8;
+    public static java.util.Timer t9;
+    public static java.util.Timer t10;
+    public static java.util.Timer t11;
+    public static java.util.Timer t12;
     public static boolean countdown1 = false;
     public static boolean countdown2 = false;
     public static boolean countdown3 = true;
@@ -39,7 +46,13 @@ public class GameScreen extends JPanel implements KeyListener {
     public static boolean boolean3 = false;
     public static boolean boolean4 = false;
     public static boolean boolean5 = false;
+    public static boolean boolean6 = false;
+    public static boolean boolean7 = false;
+    public static boolean boolean8 = false;
+    public static boolean boolean9 = false;
+    public static boolean boolean10 = false;
     private final HashSet<Integer> keys = new HashSet<>();
+
 
     public GameScreen() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -82,40 +95,110 @@ public class GameScreen extends JPanel implements KeyListener {
             new java.util.TimerTask() {
                 @Override
                 public void run() {
-                    boolean2 = true;
+                    boolean1 = true;
                 }
             }, 
-            18800
+            14800
         );
         t3 = new java.util.Timer();
         t3.schedule( 
             new java.util.TimerTask() {
                 @Override
                 public void run() {
-                    boolean3 = true;
+                    boolean1 = true;
                 }
             }, 
-            38720
+            27720
         );
         t4 = new java.util.Timer();
         t4.schedule( 
             new java.util.TimerTask() {
                 @Override
                 public void run() {
-                    boolean4 = true;
+                    boolean1 = true;
                 }
             }, 
-            63000
+            39000
         );
         t5 = new java.util.Timer();
         t5.schedule( 
             new java.util.TimerTask() {
                 @Override
                 public void run() {
-                    boolean5 = true;
+                    boolean1 = true;
                 }
             }, 
-            85000
+            52000
+        );
+        t6 = new java.util.Timer();
+        t6.schedule( 
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    boolean1 = true;
+                }
+            }, 
+            61000
+        );
+        t7 = new java.util.Timer();
+        t7.schedule( 
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    boolean1 = true;
+                }
+            }, 
+            71000
+        );
+        t8 = new java.util.Timer();
+        t8.schedule( 
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    boolean2 = true;
+                }
+            }, 
+            851000
+        );
+        t9 = new java.util.Timer();
+        t9.schedule( 
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    boolean2 = true;
+                }
+            }, 
+            951000
+        );
+        t10 = new java.util.Timer();
+        t10.schedule( 
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    boolean2 = true;
+                }
+            }, 
+            1050000
+        );
+        t11 = new java.util.Timer();
+        t11.schedule( 
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    boolean2 = true;
+                }
+            }, 
+            1120000
+        );
+        t12 = new java.util.Timer();
+        t12.schedule( 
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    boolean2 = true;
+                }
+            }, 
+            1200000
         );
         timer = new Timer(14, new TimerListener());
         timer.start();
@@ -207,30 +290,9 @@ public class GameScreen extends JPanel implements KeyListener {
             }
             if (boolean2) {
                 if (player1.checkCollision(ball) || player2.checkCollision(ball)) {
-                    ball.setSpeed(ball.getSpeed()+1);
+                    ball.setSpeed(ball.getSpeed()+2);
                     boolean2 = false;
-                } 
-            }
-            if (boolean3) {
-                if (player1.checkCollision(ball) || player2.checkCollision(ball)) {
-                    ball.setSpeed(ball.getSpeed()+1);
-                    boolean3 = false;
                 }
-            }
-            if (boolean4) {
-                if (player1.checkCollision(ball) || player2.checkCollision(ball)) {
-                    ball.setSpeed(ball.getSpeed()+1);
-                    boolean4 = false;
-                }
-            }
-            if (boolean5) {
-                if (player1.checkCollision(ball) || player2.checkCollision(ball)) {
-                    ball.setSpeed(ball.getSpeed()+1);
-                    boolean5 = false;
-                }
-            }
-            if (ball.getXPos() < -155 || ball.getXPos() > 800) {
-                
             }
             if (ball.getXPos() < -155 || ball.getXPos() > 800) {
                 timer.stop();
@@ -239,6 +301,13 @@ public class GameScreen extends JPanel implements KeyListener {
                 t3.cancel();
                 t4.cancel();
                 t5.cancel();
+                t6.cancel();
+                t7.cancel();
+                t8.cancel();
+                t9.cancel();
+                t10.cancel();
+                t11.cancel();
+                t12.cancel();
                 boolean1 = false;
                 boolean2 = false;
                 boolean3 = false;
