@@ -41,7 +41,7 @@ public class Main {
         mainScreen.addKeyListener(mainScreen);
         mainScreen.setFocusable(true);
         mainScreen.requestFocusInWindow();
-        mainScreen.startTimer();
         mainScreen.requestFocus();
+        mainScreen.setUp();
     }
 }

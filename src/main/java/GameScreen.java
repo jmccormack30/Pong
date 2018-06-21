@@ -6,10 +6,14 @@ import javax.swing.BoxLayout;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import javax.swing.JPanel;
+import java.awt.Component;
+import javax.swing.JLabel;
 import javax.swing.Timer;
 import java.awt.Graphics;
 import java.util.HashSet;
 import java.awt.Color;
+import javax.swing.Box;
+import java.awt.Font;
 import java.util.ArrayList;
 
 public class GameScreen extends JPanel implements KeyListener {
@@ -18,13 +22,14 @@ public class GameScreen extends JPanel implements KeyListener {
     Ball ball;
     Wall player1;
     Wall player2;
+    JLabel one, two, three;
     private final HashSet<Integer> keys = new HashSet<>();
 
     public GameScreen() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setPreferredSize(new Dimension(750, 750));
         setBackground(Color.GRAY);
-        ball = new Ball(0, 0, 1, 1);
+        ball = new Ball(338, 338, 1, 1);
         player1 = new Wall(0, 275, 1);
         player2 = new Wall(675, 275, 2);
     }
@@ -39,6 +44,54 @@ public class GameScreen extends JPanel implements KeyListener {
         ball.draw(g);
         player1.draw(g);
         player2.draw(g);
+    }
+
+    public void setUp() {
+        three = new JLabel("3");
+        three.setFont(new Font("Verdana", Font.BOLD, 60));
+        three.setForeground(Color.BLACK);
+        three.setAlignmentX(Component.CENTER_ALIGNMENT);
+        two = new JLabel("2");
+        two.setFont(new Font("Verdana", Font.BOLD, 60));
+        two.setForeground(Color.BLACK);
+        two.setAlignmentX(Component.CENTER_ALIGNMENT);
+        one = new JLabel("1");
+        one.setFont(new Font("Verdana", Font.BOLD, 60));
+        one.setForeground(Color.BLACK);
+        one.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(Box.createVerticalStrut(225));
+        add(three);
+        Main.frame.validate();
+        Main.frame.repaint();
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        remove(three);
+        Main.frame.validate();
+        Main.frame.repaint();
+        add(two);
+        Main.frame.validate();
+        Main.frame.repaint();
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        remove(two);
+        Main.frame.validate();
+        Main.frame.repaint();
+        add(one);
+        Main.frame.validate();
+        Main.frame.repaint();
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        remove(one);
+        startTimer();
     }
 
     private class TimerListener implements ActionListener {
