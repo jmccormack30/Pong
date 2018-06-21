@@ -48,9 +48,9 @@ public class Wall {
             yPos = 0;
         }
         if (direction) {
-            yPos += 8;
+            yPos += 6;
         } else {
-            yPos -= 8;
+            yPos -= 6;
         }
     }
 
