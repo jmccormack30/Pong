@@ -48,13 +48,13 @@ public class Wall {
             yPos = 0;
         }
         if (direction) {
-            yPos += 3;
+            yPos += 4;
         } else {
-            yPos -= 3;
+            yPos -= 4;
         }
     }
 
-    public void checkCollision(Ball ball) {
+    public boolean checkCollision(Ball ball) {
         Rectangle r1 = new Rectangle(xPos, yPos, 75, 200);
         Rectangle r2 = new Rectangle(ball.getXPos(), ball.getYPos(), 75, 75);
         if (r1.intersects(r2)) {
@@ -76,6 +76,7 @@ public class Wall {
                 }
             }
         }
+        return (r1.intersects(r2));
     }
 
     public void draw(Graphics g) {

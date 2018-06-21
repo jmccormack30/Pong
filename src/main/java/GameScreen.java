@@ -23,6 +23,11 @@ public class GameScreen extends JPanel implements KeyListener {
     Wall player1;
     Wall player2;
     JLabel one, two, three;
+    public static boolean boolean1 = false;
+    public static boolean boolean2 = false;
+    public static boolean boolean3 = false;
+    public static boolean boolean4 = false;
+    public static boolean boolean5 = false;
     private final HashSet<Integer> keys = new HashSet<>();
 
     public GameScreen() {
@@ -39,44 +44,46 @@ public class GameScreen extends JPanel implements KeyListener {
             new java.util.TimerTask() {
                 @Override
                 public void run() {
-                    System.out.println("Ball Speed up x1");
-                    ball.setSpeed(ball.getSpeed()+1);
+                    boolean1 = true;
                 }
             }, 
-            6520 
+            5900
         );
         new java.util.Timer().schedule( 
             new java.util.TimerTask() {
                 @Override
                 public void run() {
-                    System.out.println();
-                    System.out.println("Ball Speed up x2");
-                    ball.setSpeed(ball.getSpeed()+1);
+                    boolean2 = true;
                 }
             }, 
-            15000 
+            18800
         );
         new java.util.Timer().schedule( 
             new java.util.TimerTask() {
                 @Override
                 public void run() {
-                    System.out.println();
-                    System.out.println("Ball Speed up x3");
-                    ball.setSpeed(ball.getSpeed()+1);
+                    boolean3 = true;
                 }
             }, 
-            19500 
+            38720
         );
         new java.util.Timer().schedule( 
             new java.util.TimerTask() {
                 @Override
                 public void run() {
-                    System.out.println();
-                    System.out.println("Ball Speed up x4");
-                    ball.setSpeed(ball.getSpeed()+1);
+                    boolean4 = true;
                 }
             }, 
-            26000
+            63000
+        );
+        new java.util.Timer().schedule( 
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    boolean5 = true;
+                }
+            }, 
+            85000
         );
         timer = new Timer(14, new TimerListener());
         timer.start();
@@ -156,6 +163,36 @@ public class GameScreen extends JPanel implements KeyListener {
             }
             player1.checkCollision(ball);
             player2.checkCollision(ball);
+            if (boolean1) {
+                if (player1.checkCollision(ball) || player2.checkCollision(ball)) {
+                    ball.setSpeed(ball.getSpeed()+1);
+                    boolean1 = false;
+                }
+            }
+            if (boolean2) {
+                if (player1.checkCollision(ball) || player2.checkCollision(ball)) {
+                    ball.setSpeed(ball.getSpeed()+1);
+                    boolean2 = false;
+                } 
+            }
+            if (boolean3) {
+                if (player1.checkCollision(ball) || player2.checkCollision(ball)) {
+                    ball.setSpeed(ball.getSpeed()+1);
+                    boolean3 = false;
+                }
+            }
+            if (boolean4) {
+                if (player1.checkCollision(ball) || player2.checkCollision(ball)) {
+                    ball.setSpeed(ball.getSpeed()+1);
+                    boolean4 = false;
+                }
+            }
+            if (boolean5) {
+                if (player1.checkCollision(ball) || player2.checkCollision(ball)) {
+                    ball.setSpeed(ball.getSpeed()+1);
+                    boolean5 = false;
+                }
+            }
             /*At the end of each frame update, repaint the level to the panel*/
             repaint();
         }
