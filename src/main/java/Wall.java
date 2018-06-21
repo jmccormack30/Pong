@@ -42,10 +42,10 @@ public class Wall {
 
     public void move(boolean direction) {
         if ((yPos + 200) > 750) {
-            yPos = 550;
+            yPos = 545;
         }
         if (yPos < 0) {
-            yPos = 0;
+            yPos = 5;
         }
         if (direction) {
             yPos += 6;
