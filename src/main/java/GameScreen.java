@@ -26,18 +26,7 @@ public class GameScreen extends JPanel implements KeyListener {
     Wall player2;
     JLabel one, two, three;
     Counter c1, c2, c3;
-    public static java.util.Timer t1;
-    public static java.util.Timer t2;
-    public static java.util.Timer t3;
-    public static java.util.Timer t4;
-    public static java.util.Timer t5;
-    public static java.util.Timer t6;
-    public static java.util.Timer t7;
-    public static java.util.Timer t8;
-    public static java.util.Timer t9;
-    public static java.util.Timer t10;
-    public static java.util.Timer t11;
-    public static java.util.Timer t12;
+    public static java.util.Timer t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14;
     public static boolean countdown1 = false;
     public static boolean countdown2 = false;
     public static boolean countdown3 = true;
@@ -98,7 +87,7 @@ public class GameScreen extends JPanel implements KeyListener {
                     boolean1 = true;
                 }
             }, 
-            14800
+            11800
         );
         t3 = new java.util.Timer();
         t3.schedule( 
@@ -108,7 +97,7 @@ public class GameScreen extends JPanel implements KeyListener {
                     boolean1 = true;
                 }
             }, 
-            27720
+            22720
         );
         t4 = new java.util.Timer();
         t4.schedule( 
@@ -118,37 +107,37 @@ public class GameScreen extends JPanel implements KeyListener {
                     boolean1 = true;
                 }
             }, 
-            39000
+            31000
         );
         t5 = new java.util.Timer();
         t5.schedule( 
             new java.util.TimerTask() {
                 @Override
                 public void run() {
-                    boolean1 = true;
+                    boolean2 = true;
                 }
             }, 
-            52000
+            42000
         );
         t6 = new java.util.Timer();
         t6.schedule( 
             new java.util.TimerTask() {
                 @Override
                 public void run() {
-                    boolean1 = true;
+                    boolean2 = true;
                 }
             }, 
-            61000
+            51000
         );
         t7 = new java.util.Timer();
         t7.schedule( 
             new java.util.TimerTask() {
                 @Override
                 public void run() {
-                    boolean1 = true;
+                    boolean2 = true;
                 }
             }, 
-            71000
+            62000
         );
         t8 = new java.util.Timer();
         t8.schedule( 
@@ -158,7 +147,7 @@ public class GameScreen extends JPanel implements KeyListener {
                     boolean2 = true;
                 }
             }, 
-            851000
+            71000
         );
         t9 = new java.util.Timer();
         t9.schedule( 
@@ -168,7 +157,7 @@ public class GameScreen extends JPanel implements KeyListener {
                     boolean2 = true;
                 }
             }, 
-            951000
+            79000
         );
         t10 = new java.util.Timer();
         t10.schedule( 
@@ -178,7 +167,7 @@ public class GameScreen extends JPanel implements KeyListener {
                     boolean2 = true;
                 }
             }, 
-            1050000
+            85000
         );
         t11 = new java.util.Timer();
         t11.schedule( 
@@ -188,7 +177,7 @@ public class GameScreen extends JPanel implements KeyListener {
                     boolean2 = true;
                 }
             }, 
-            1120000
+            92000
         );
         t12 = new java.util.Timer();
         t12.schedule( 
@@ -198,7 +187,29 @@ public class GameScreen extends JPanel implements KeyListener {
                     boolean2 = true;
                 }
             }, 
-            1200000
+            100000
+        );
+        timer = new Timer(14, new TimerListener());
+        t13 = new java.util.Timer();
+        t13.schedule( 
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    boolean2 = true;
+                }
+            }, 
+            106000
+        );
+        timer = new Timer(14, new TimerListener());
+        t14 = new java.util.Timer();
+        t14.schedule( 
+            new java.util.TimerTask() {
+                @Override
+                public void run() {
+                    boolean2 = true;
+                }
+            }, 
+            112000
         );
         timer = new Timer(14, new TimerListener());
         timer.start();
@@ -308,6 +319,8 @@ public class GameScreen extends JPanel implements KeyListener {
                 t10.cancel();
                 t11.cancel();
                 t12.cancel();
+                t13.cancel();
+                t14.cancel();
                 boolean1 = false;
                 boolean2 = false;
                 boolean3 = false;
