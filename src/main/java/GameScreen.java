@@ -24,6 +24,9 @@ public class GameScreen extends JPanel implements KeyListener {
     Ball ball;
     Wall player1;
     Wall player2;
+    public static int p1_score = 0;
+    public static int p2_score = 0;
+    JLabel score;
     JLabel one, two, three;
     Counter c1, c2, c3;
     public static java.util.Timer t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14;
@@ -32,14 +35,6 @@ public class GameScreen extends JPanel implements KeyListener {
     public static boolean countdown3 = true;
     public static boolean boolean1 = false;
     public static boolean boolean2 = false;
-    public static boolean boolean3 = false;
-    public static boolean boolean4 = false;
-    public static boolean boolean5 = false;
-    public static boolean boolean6 = false;
-    public static boolean boolean7 = false;
-    public static boolean boolean8 = false;
-    public static boolean boolean9 = false;
-    public static boolean boolean10 = false;
     private final HashSet<Integer> keys = new HashSet<>();
 
 
@@ -50,22 +45,26 @@ public class GameScreen extends JPanel implements KeyListener {
         ball = new Ball(338, 338, 1, 1);
         player1 = new Wall(0, 275, 1);
         player2 = new Wall(675, 275, 2);
-        add(Box.createVerticalStrut(225));
-        three = new JLabel("3");
-        three.setFont(new Font("Verdana", Font.BOLD, 60));
-        three.setForeground(Color.BLACK);
-        three.setAlignmentX(Component.CENTER_ALIGNMENT);
-        two = new JLabel("2");
-        two.setFont(new Font("Verdana", Font.BOLD, 60));
-        two.setForeground(Color.BLACK);
-        two.setAlignmentX(Component.CENTER_ALIGNMENT);
-        one = new JLabel("1");
-        one.setFont(new Font("Verdana", Font.BOLD, 60));
-        one.setForeground(Color.BLACK);
-        one.setAlignmentX(Component.CENTER_ALIGNMENT);
+        // add(Box.createVerticalStrut(225));
+        // three = new JLabel("3");
+        // three.setFont(new Font("Verdana", Font.BOLD, 60));
+        // three.setForeground(Color.BLACK);
+        // three.setAlignmentX(Component.CENTER_ALIGNMENT);
+        // two = new JLabel("2");
+        // two.setFont(new Font("Verdana", Font.BOLD, 60));
+        // two.setForeground(Color.BLACK);
+        // two.setAlignmentX(Component.CENTER_ALIGNMENT);
+        // one = new JLabel("1");
+        // one.setFont(new Font("Verdana", Font.BOLD, 60));
+        // one.setForeground(Color.BLACK);
+        // one.setAlignmentX(Component.CENTER_ALIGNMENT);
         c1 = new Counter(346, 250, "images/1.png");
         c2 = new Counter(346, 250, "images/2.png");
         c3 = new Counter(346, 250, "images/3.png");
+        score = new JLabel(Integer.toString(p1_score) + " - " + Integer.toString(p2_score));
+        score.setAlignmentX(Component.CENTER_ALIGNMENT);
+        score.setFont(new Font("Verdana", Font.BOLD, 46));
+        add(score);
     }
 
     public void startTimer() {
@@ -271,6 +270,7 @@ public class GameScreen extends JPanel implements KeyListener {
         player1.setYPos(275);
         player2.setYPos(275);
         countdown3 = true;
+        score.setText(Integer.toString(p1_score) + " - " + Integer.toString(p2_score));
         setUp();
     }
 
@@ -306,6 +306,11 @@ public class GameScreen extends JPanel implements KeyListener {
                 }
             }
             if (ball.getXPos() < -155 || ball.getXPos() > 800) {
+                if (ball.getXPos() < -155) {
+                    p2_score += 1;
+                } else {
+                    p1_score += 1;
+                }
                 timer.stop();
                 t1.cancel();
                 t2.cancel();
@@ -323,9 +328,6 @@ public class GameScreen extends JPanel implements KeyListener {
                 t14.cancel();
                 boolean1 = false;
                 boolean2 = false;
-                boolean3 = false;
-                boolean4 = false;
-                boolean5 = false;
                 new java.util.Timer().schedule( 
                     new java.util.TimerTask() {
                         @Override
