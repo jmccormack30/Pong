@@ -15,6 +15,8 @@ public class Main {
     public static JPanel cards;
     public static CardLayout cardLayout;
     public static GameScreen mainScreen;
+    public static StartScreen startScreen;
+    public static boolean running = true;
 
     public static void main(String[] args) {
         Main game = new Main();
@@ -33,15 +35,44 @@ public class Main {
 
         cards = new JPanel(new CardLayout());
         mainScreen = new GameScreen();
-        cards.add(mainScreen);
+        startScreen = new StartScreen();
+        cards.add(mainScreen, "mainScreen");
+        cards.add(startScreen, "startScreen");
         frame.add(cards);
         frame.pack();
         frame.setVisible(true);
         cardLayout = (CardLayout) cards.getLayout();
+        title();
+    }
+
+    public void title() {
+        cardLayout.show(cards, "startScreen");
+        while (running) {
+            try {
+                Thread.sleep(1);
+            } catch (Exception e) {
+                e.getMessage();
+            }
+        }
+        running = true;
+        my_game();
+    }
+
+    public void my_game() {
         mainScreen.addKeyListener(mainScreen);
         mainScreen.setFocusable(true);
         mainScreen.requestFocusInWindow();
-        mainScreen.requestFocus();
+        cardLayout.show(cards, "mainScreen");
         mainScreen.setUp();
+        mainScreen.requestFocus();
+        while (running) {
+            try {
+                Thread.sleep(1);
+            } catch (Exception e) {
+                e.getMessage();
+            }
+        }
+        running = true;
+        my_game();
     }
 }
